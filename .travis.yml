@@ -8,7 +8,7 @@ addons:
     packages:
     - qtbase5-dev-tools
 
-script:
+# script:
   - # /usr/bin/rcc --version
   - # python3 file.py
 
