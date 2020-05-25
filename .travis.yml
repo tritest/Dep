@@ -1,7 +1,7 @@
 os: linux
 dist: bionic
 
-language: minimal
+language: shell
 
 addons:
   apt:
@@ -21,7 +21,7 @@ before_deploy:
 
 deploy:
   provider: releases
-  api_key: $GH_TOKEN
+  token: $GH_TOKEN
   file: "README.md"
   cleanup: false
   # on:
