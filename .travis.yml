@@ -1,0 +1,28 @@
+dist: bionic
+
+language: python
+
+addons:
+  apt:
+    packages:
+    - qtbase5-dev-tools
+
+script:
+  - |
+    /usr/bin/rcc
+    # python3 file.py
+
+before_deploy:
+  # Set up git user name and tag this commit
+  - git config --local user.name "test"
+  - git config --local user.email "test@test.com"
+  - TRAVIS_TAG="continuous"
+  - git tag $TRAVIS_TAG
+
+deploy:
+  provider: releases
+  api_key: $GH_TOKEN
+  file: "README.md"
+  skip_cleanup: true
+  on:
+    tags: true
