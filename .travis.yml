@@ -17,9 +17,12 @@ before_deploy:
   - git config --local user.name "test"
   - git config --local user.email "test@test.com"
   - TRAVIS_TAG="continuous"
-  - git tag -d $TRAVIS_TAG
-  - git push --delete origin $TRAVIS_TAG
-  - git tag $TRAVIS_TAG
+  - git tag -f $TRAVIS_TAG
+  - git remote add gh
+    https://${OWNER}:${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
+  # - git push gh :travis-${TAG}-build || true
+  - git push -f gh
+  - git remote remove gh
 
 deploy:
   provider: releases
