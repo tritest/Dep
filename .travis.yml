@@ -9,8 +9,8 @@ addons:
     - qtbase5-dev-tools
 
 # script:
-  - # /usr/bin/rcc --version
-  - # python3 file.py
+#  - # /usr/bin/rcc --version
+#  - # python3 file.py
 
 before_deploy:
   # Set up git user name and tag this commit
