@@ -1,3 +1,4 @@
+os: linux
 dist: bionic
 
 language: python
@@ -9,7 +10,7 @@ addons:
 
 script:
   - |
-    /usr/bin/rcc
+    /usr/bin/rcc --version
     # python3 file.py
 
 before_deploy:
@@ -21,8 +22,8 @@ before_deploy:
 
 deploy:
   provider: releases
-  api_key: $GH_TOKEN
+  token: $GH_TOKEN
   file: "README.md"
-  skip_cleanup: true
+  cleanup: false
   on:
     tags: true
