@@ -21,7 +21,7 @@ before_deploy:
 
 deploy:
   provider: releases
-  token: $GH_TOKEN
+  api_key: $GH_TOKEN
   file: "README.md"
   cleanup: false
   # on:
