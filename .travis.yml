@@ -8,26 +8,23 @@ addons:
     packages:
     - qtbase5-dev-tools
 
-# script:
-#  - # /usr/bin/rcc --version
-#  - # python3 file.py
+script:
+ - chmod ugo+x themes.sh
+ - /bin/bash ./themes.sh
 
 before_deploy:
   # Set up git user name and tag this commit
   - git config --local user.name "test"
   - git config --local user.email "test@test.com"
-  - TRAVIS_TAG="continuous"
+  - export TRAVIS_TAG="continuous"
   - git tag -f $TRAVIS_TAG
-  - git remote add gh
-    https://${OWNER}:${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
-  - git push gh :master || true
-  - git push -f gh
-  - git remote remove gh
 
 deploy:
   provider: releases
   token: $GH_TOKEN
-  file: "README.md"
-  cleanup: false
-  # on:
-  #   tags: true
+  file_glob: true
+  file: deploy/*
+  skip_cleanup: true
+  overwrite: true
+  on:
+    tags: true
