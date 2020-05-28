@@ -14,12 +14,13 @@ script:
 
 before_deploy:
   # Set up git user name and tag this commit
-  - git config --local user.name "test"
-  - git config --local user.email "test@test.com"
+  # - git config --local user.name "test"
+  # - git config --local user.email "test@test.com"
   - export TRAVIS_TAG="continuous"
   - git tag -f $TRAVIS_TAG
   - git remote add gh
     https://${OWNER}:${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
+  - git push gh :$TRAVIS_TAG || true
   - git push -f gh $TRAVIS_TAG
   - git remote remove gh
 
